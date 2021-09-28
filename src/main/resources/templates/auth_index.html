@@ -1,0 +1,58 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1"/>
+  <body>
+
+    <!-- top header -->
+<header th:replace="fragments :: header2_auth"></header>
+  <!-- //top header -->
+
+<section class="w3l-breadcrumb">
+    <div class="container">
+        <div class="input-group">
+		  <div class="top-inputs">
+		    <input type="search" id="form1" class="form-control" placeholder="search"/>
+		    
+		  </div>
+		  <button type="button" class="btn btn-primary">
+		    <i class="fa fa-search"></i>
+		  </button>
+		</div>
+    </div>
+</section>
+<!--  services section -->
+<div class="w3l-servicesblock1" id="why">
+    <section id="grids5-block">
+        <div class="container">
+       	<div th:if="${message != null}">
+		     <div class="alert alert-warning">[[${message}]]</div>
+		    </div>
+		    <h3 style="text-align:center">New Offers</h3>
+            <div class="row mt-md-5 mt-4 text-center" >
+                <div class="col-lg-3 col-md-6" th:each="product:${products}">
+                    <div class="grids5-info">
+                        <a th:href="@{/products/show/{id}(id=${product.id})}" class="d-block zoom"><img style="height:200px;width:100%"  th:src="@{${'/photos/'+ product.coverPhoto}}" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info" style="text-align:left">
+                            <h5>[[${product.title}]]</h5>
+                            <h6>Ksh.[[${product.price}]]/[[${product.unit}]]</h6>
+                            <h6>[[${product.streetAddress}]],[[${product.county}]]<i class="fa fa-map-marker" style="float:right"></i></h6>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+        </div>
+    </section>
+</div>
+<!-- footer -->
+
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+
+</body>
+</html>

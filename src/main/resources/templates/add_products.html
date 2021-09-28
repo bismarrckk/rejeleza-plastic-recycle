@@ -1,0 +1,196 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1"/>
+  <body>
+
+    <!-- top header -->
+<header th:replace="fragments :: header2_auth"></header>
+  <!-- //top header -->
+<!--  services section -->
+ <section class="w3l-contacts-12" id="contact">
+        <div class="contact-top">
+            <div class="container">
+               
+                    <!-- contact form -->
+          <div class="container"  style="background-color: #f8f9fa">
+           <div class="title-heading-w3 text-center mx-auto">
+                    <h3 class="title-big">Create a Listing</h3>
+                </div><br>
+           	<div th:if="${param.success}">
+		     <div class="alert alert-info">Registration successful,
+		      Please check your email to verify your account
+		      </div>
+		    </div>
+		    <div th:if="${message}">
+		     <div class="alert alert-danger">[[${message}]]
+		      </div>
+		    </div>
+		     <div th:if="${param.error}">
+		     <div class="alert alert-danger">Duplicate!</div>
+		    </div>
+			
+			  <form th:action="@{/products/save}" method="POST"  enctype="multipart/form-data">
+               
+                <div class="form-group">
+                   <label>Title</label>
+                   <input class="form-control py-4"  name="title" type="text" required/>
+                 </div>
+               <div class="form-row">
+                   <div class="col-md-6">
+                       <div class="form-group">
+                          <label>Category</label>
+                          <select class="form-control"  name="category" style="height: 55px;" required>
+							     <option value="">--Select--</option>
+							     <option th:each="category : ${categories}"
+							             th:value="${category.id}"
+							             th:text="${category.name}">
+							     </option>
+							</select>
+                       </div>
+                   </div>
+                  
+                   <div class="col-md-6">
+                       <div class="form-group">
+                           <label>Condition</label>
+                         <select class="form-control"  name="condition"  style="height: 55px;" required>
+							     <option value="">--Select--</option>
+							     <option value="Regrind">Regrind</option>
+								 <option value="Pellets">Pellets</option>
+								 <option value="Unprocessed">Unprocessed</option>
+							</select>
+                       </div>
+                   </div>
+                 </div>
+               
+                   <div class="form-row">
+                     <div class="col-md-4">
+                       <div class="form-group">
+                           <label >Quantity</label>
+                           <input class="form-control py-4" type="number"  name="quantity"  required/>
+                       </div>
+                     </div>
+                     <div class="col-md-4">
+                       <div class="form-group">
+                           <label >Unit</label>
+                          <select name="unit" class="form-control" style="height: 55px;" required>
+                              <option value="">---select---</option>
+                              <option value="Kg">Kgs</option>
+                              <option value="lb"> lb</option>
+                              <option value="MT"> MT</option>
+                             
+                          </select>
+                       </div>
+                     </div>
+                     <div class="col-md-4">
+                       <div class="form-group">
+                           <label >Price per unit</label>
+                           <input class="form-control py-4" type="number"  name="price" required/>
+                       </div>
+                     </div>
+                     
+                     </div>
+                   
+                
+                       <div class="form-group" >
+                           <label >Description</label>
+                              <textarea style="background-color:#fff" class="form-control" rows="4" name="description" required ></textarea>
+                       </div>
+                       <div class="form-row">
+	                     <div class="col-md-6">
+	                       <div class="form-group">
+	                           <label >County</label>
+	                           <select name="county" required class="form-control" style="height: 55px;">
+	                              <option value="">---select---</option>
+	                              	<option value="baringo">Baringo</option>
+									<option value="bomet">Bomet</option>
+									<option value="bungoma">Bungoma</option>
+									<option value="busia">Busia</option>
+									<option value="elgeyo marakwet">Elgeyo Marakwet</option>
+									<option value="embu">Embu</option>
+									<option value="garissa">Garissa</option>
+									<option value="homa bay">Homa Bay</option>
+									<option value="isiolo">Isiolo</option>
+									<option value="kajiado">Kajiado</option>
+									<option value="kakamega">Kakamega</option>
+									<option value="kericho">Kericho</option>
+								    <option value="kiambu">Kiambu</option>
+								    <option value="kilifi">Kilifi</option>
+								    <option value="kirinyaga">Kirinyaga</option>
+								    <option value="kisii">Kisii</option>
+								    <option value="kisumu">Kisumu</option>
+								    <option value="kitui">Kitui</option>
+								    <option value="kwale">Kwale</option>
+								    <option value="laikipia">Laikipia</option>
+								    <option value="lamu">Lamu</option>
+								    <option value="machakos">Machakos</option>
+								    <option value="makueni">Makueni</option>
+								    <option value="mandera">Mandera</option>
+								    <option value="meru">Meru</option>
+								    <option value="migori">Migori</option>
+								    <option value="marsabit">Marsabit</option>
+								    <option value="mombasa">Mombasa</option>
+								    <option value="muranga">Muranga</option>
+								    <option value="nairobi">Nairobi</option>
+								    <option value="nakuru">Nakuru</option>
+								    <option value="nandi">Nandi</option>
+								    <option value="narok">Narok</option>
+								    <option value="nyamira">Nyamira</option>
+								    <option value="nyandarua">Nyandarua</option>
+								    <option value="nyeri">Nyeri</option>
+								    <option value="samburu">Samburu</option>
+								    <option value="siaya">Siaya</option>
+								    <option value="taita taveta">Taita Taveta</option>
+								    <option value="tana river">Tana River</option>
+								    <option value="tharaka nithi">Tharaka Nithi</option>
+								    <option value="trans nzoia">Trans Nzoia</option>
+								    <option value="turkana">Turkana</option>
+								    <option value="uasin gishu">Uasin Gishu</option>
+								    <option value="vihiga">Vihiga</option>
+								    <option value="wajir">Wajir</option>
+								    <option value="pokot">West Pokot</option>
+	                              
+                          	   </select>
+	                       </div>
+	                     </div>
+	                     <div class="col-md-6">
+	                       <div class="form-group">
+	                           <label >Street Address</label>
+	                           <input class="form-control py-4" type="text" name="streetAddress" />
+	                       </div>
+	                     </div>
+	                    </div>
+	                     <div class="form-row">
+	                     <div class="col-md-6">
+	                       <div class="form-group">
+	                           <label >Cover Photo</label>
+	                           <input class="form-control py-4" type="file"  name="coverPhoto" accept="image/*"  required/>
+	                       </div>
+	                     </div>
+	                    
+	                     <div class="col-md-6">
+	                       <div class="form-group">
+	                           <label >Video</label>
+	                           <input class="form-control py-4" type="file"  name="video" accept="video/*" required>
+	                       </div>
+	                     </div>
+	                     
+	                    </div>
+                 
+               <div align="center">
+              <button type="submit" class="btn btn-primary mb-2" ><i class="fa fa-save"></i> Submit</button>
+              
+           </div>
+           </form>
+        </div>
+    </div>
+
+ </div>
+ </section>
+<!-- footer -->
+<section th:replace="fragments :: footer"></section>
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+</body>
+</html>

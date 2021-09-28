@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments :: header"/>
+<body>
+<div id="wrapper">
+     <!-- Navigation -->
+     <nav th:replace="admin/fragments :: navigation"></nav>
+       <!-- Navigation -->
+       <div id="page-wrapper">
+       <div class="col-md-12 graphs">
+       	<div class="xs">
+  	    <h3 style="margin-left:3%">Edit User</h3>
+  	    <div class="well1 white">
+        <form th:action="@{/users/update}" method="Post" th:object="${user}">
+	 	 <input type="hidden" name="id" th:field="*{id}" />
+	 	 <div class="row">
+	 	 <div class="col-md-6">
+		 <div class="form-group">
+			 <label class="control-label" for="firstName">First Name</label>
+			 <input id="firstName" class="form-control1" th:field="*{firstName}" required readonly/>
+			 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+		 </div>
+		  <div class="form-group">
+		 <label class="control-label" for="lastName">Last Name</label>
+		 <input id="lastName" class="form-control1" th:field="*{lastName}" required readonly/>
+		 <span style="color:red;font-style:italic"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+		 </div>
+		  <div class="form-group">
+		 <label class="control-label" for="email">Email</label>
+		 <input id="email" type="email" class="form-control1" th:field="*{email}" required readonly/>
+		 <span style="color:red;font-style:italic"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+		 </div>
+		  <div class="form-group">
+		 <label class="control-label" for="phone">Phone</label>
+		 <input id="phone" type="number" class="form-control1" th:field="*{phone}" required readonly/>
+		 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+		 </div>
+		 </div>
+		 <div class="col-md-6">
+		 <div class="form-group">
+		 <label class="control-label" for="idNumber">ID Number</label>
+		 	<input id="idNumber" type="number" class="form-control1" th:field="*{idNumber}" required readonly/>
+		 	<span style="color:red;font-style:italic" th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></span>
+		 </div> 
+		
+		 <div class="form-group">
+		 	<label class="control-label" for="status">Change Status</label>
+		 	<select name="enabled" required class="form-control1">
+		 		<option th:value="${user.enabled}">[[${user.enabled}]]</option>
+		 		<option value="true">Enable</option>
+		 		<option value="false">Disable</option>		 		
+		 	</select>
+		 </div>
+
+        <label class="col-4 col-form-label">Roles: </label>
+        <div class="col-8">
+            <th:block th:each="role: ${roles}">
+            <input name="roles" type="checkbox" th:field="*{roles}"
+                th:text="${role.name}" th:value="${role.id}" class="m-2" />
+            </th:block>
+        </div><br>
+    
+		 <div class="form-group">
+	       <button type="submit" class="btn btn-success">UPDATE</button>
+	     </div>
+	     </div>
+	     </div>
+	 </form>
+	
+      </div>
+    </div>	 
+
+	 <div th:replace="admin/fragments :: footer">     
+    </div>
+  </div>
+ </div>
+ <!-- /#page-wrapper -->
+ </div>
+ <!-- /#wrapper -->
+ <!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" th:src="@{/admin/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+ <head th:fragment="header1">
+   <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Excellence - Business Category Bootstrap Responsive Website Template - Home : W3Layouts</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" th:href="@{/frontend/css/style-starter.css}">
+    
+  </head>
+  
+<body>
+<header id="site-header" class="fixed-top" style="background-color: #182c44;" th:fragment="header2">
+  <section class="w3l-header-4" >
+      <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <h1><a class="navbar-brand" th:href="@{/}">
+                  <span class="fa fa-clone"></span> Excellence
+                  </a></h1>
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fa icon-expand fa-bars"></span>
+                  <span class="fa icon-close fa-times"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarNav" >
+                  <ul class="navbar-nav" >
+                      <li class="nav-item" >
+                          <a class="nav-link" th:href="@{/}">Home </a>
+                      </li>
+                      
+                      <li class="nav-item dropdown @@services__active">
+                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories <i class="fa fa-sort-down"></i>
+                         </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          	
+                              <a class="dropdown-item" th:each="category : ${categories}" th:href="@{/show/{id}(id=${category.id})}">[[${category.name}]]</a>
+                    
+                         </div>
+                      </li>
+                      <li class="nav-item @@contact__active">
+                          <a class="nav-link" th:href="@{/contact}">Contact</a>
+                      </li>
+                      
+                      
+                  </ul>
+                  <ul class="navbar-nav search-right mt-lg-0 mt-2">
+                     
+                     
+                       <li class="nav-item mr-2" ><a th:href="@{/login}" class="btn btn-primary">
+                              <span class="fa fa-sign-in " aria-hidden="true"></span> Login</a>
+                      </li>
+                      
+                  </ul>
+                 
+              </div>
+             
+          </nav>
+      </div>
+  </section>
+</header>
+
+<header id="site-header" class="fixed-top" style="background-color: #182c44;" th:fragment="header2_auth">
+  <section class="w3l-header-4" >
+      <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+          
+              <h1><a class="navbar-brand" th:href="@{/products}">
+                  <span class="fa fa-clone"></span> Excellence
+                  </a>
+               </h1>
+             
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fa icon-expand fa-bars"></span>
+                  <span class="fa icon-close fa-times"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" th:href="@{/products/create}"><i class="fa fa-edit"></i> Sell </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="about.html"><i class="fa fa-shopping-cart"></i> My Offers</a>
+                      </li>
+                                           
+                       <li class="nav-item">
+                       	<div sec:authorize="hasAuthority('MANAGER')" > 
+                          <a class="nav-link" th:href="@{/users}"><i class="fa fa-cog"></i> Admin</a>
+                          </div>
+                      </li>
+                    	
+                     
+                  </ul>
+                   <ul class="navbar-nav search-right mt-lg-0 mt-2">
+                     
+                      
+                      <li class="nav-item mr-2" ><a th:href="@{/products/profile}" class="btn btn-primary">
+                              <span class="fa fa-user" aria-hidden="true"></span></a>
+                      </li>
+                       <li class="nav-item mr-2" ><a th:href="@{/logout}" class="btn btn-primary">
+                              <span class="fa fa-power-off " aria-hidden="true"></span></a>
+                      </li>
+                      
+                  </ul>
+
+                  
+              </div>
+              <!-- toggle switch for light and dark theme -->
+              
+          </nav>
+      </div>
+  </section>
+</header>
+<section class="w3l-main-slider" id="home" th:fragment="main_slider">
+    <div class="companies20-content">
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="item">
+                <li>
+                    <div class="slider-info banner-view bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="banner-info-bg">
+                                    <h6>We are Creative</h6>
+                                    <h5>World IT Service company </h5>
+                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
+                                        creates amazing UI/UX experiences. </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="w3l-footer-29-main" th:fragment="footer">
+
+  <!-- copyright -->
+  <section class="w3l-copyright text-center">
+    <div class="container">
+      <p class="copy-footer-29">© 2021 Excellence. All rights reserved. Design by <a href="https://w3layouts.com/"
+          target="_blank">
+          W3Layouts</a></p>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      &#10548;
+    </button>
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- /move top -->
+  </section>
+  <!-- //copyright -->
+</section>
+
+<div th:fragment="js_files">
+<script th:src="@{/frontend/js/jquery-3.3.1.min.js}"></script>
+
+<script th:src="@{/frontendjs/theme-change.js}"></script> <!-- //light and dark mode switch js -->
+
+<script th:src="@{/frontendjs/jquery-1.9.1.min.js}"></script>
+<!-- faq -->
+<script>
+  const items = document.querySelectorAll(".accordion button");
+
+  function toggleAccordion() {
+    const itemToggle = this.getAttribute('aria-expanded');
+
+    for (i = 0; i < items.length; i++) {
+      items[i].setAttribute('aria-expanded', 'false');
+    }
+
+    if (itemToggle == 'false') {
+      this.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  items.forEach(item => item.addEventListener('click', toggleAccordion));
+</script>
+<!-- //faq -->
+
+<script th:src="@{/frontend/js/easyResponsiveTabs.js}"></script>
+<!--Plug-in Initialisation-->
+<script type="text/javascript">
+  $(document).ready(function () {
+    //Horizontal Tab
+    $('#parentHorizontalTab').easyResponsiveTabs({
+      type: 'default', //Types: default, vertical, accordion
+      width: 'auto', //auto or any width like 600px
+      fit: true, // 100% fit in a container
+      tabidentify: 'hor_1', // The tab groups identifier
+      activate: function (event) { // Callback function if tab is switched
+        var $tab = $(this);
+        var $info = $('#nested-tabInfo');
+        var $name = $('span', $info);
+        $name.text($tab.text());
+        $info.show();
+      }
+    });
+  });
+</script>
+
+<!-- owl carousel -->
+<script th:src="@{/frontend/js/owl.carousel.js}"></script>
+<!-- script for banner slider-->
+<script>
+  $(document).ready(function () {
+    $('.owl-one').owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: false,
+      responsiveClass: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplaySpeed: 1000,
+      autoplayHoverPause: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        480: {
+          items: 1
+        },
+        667: {
+          items: 1
+        },
+        1000: {
+          items: 1
+        }
+      }
+    })
+  })
+</script>
+<!-- //script -->
+<!-- owl carousel -->
+
+
+<!-- script for customers -->
+<script>
+  $(document).ready(function () {
+    $('.owl-three').owlCarousel({
+      loop: true,
+      margin: 0,
+      nav: false,
+      dots: false,
+      responsiveClass: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplaySpeed: 1000,
+      autoplayHoverPause: false,
+      responsive: {
+        0: {
+          items: 3,
+          nav: true
+        },
+        480: {
+          items: 3,
+          nav: true
+        },
+        667: {
+          items: 3,
+          nav: true
+        },
+        800: {
+          items: 4,
+          nav: true
+        },
+        1000: {
+          items: 5,
+          nav: true
+        }
+      }
+    })
+  })
+</script>
+<!-- //customers owlcarousel -->
+
+<!-- disable body scroll which navbar is in active -->
+<!-- <script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script> -->
+<!-- disable body scroll which navbar is in active -->
+
+<!--/MENU-JS-->
+<script>
+  $(window).on("scroll", function () {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 80) {
+      $("#site-header").addClass("nav-fixed");
+    } else {
+      $("#site-header").removeClass("nav-fixed");
+    }
+  });
+
+  //Main navigation Active Class Add Remove
+  $(".navbar-toggler").on("click", function () {
+    $("header").toggleClass("active");
+  });
+  $(document).on("ready", function () {
+    if ($(window).width() > 991) {
+      $("header").removeClass("active");
+    }
+    $(window).on("resize", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+    });
+  });
+</script>
+<!--//MENU-JS-->
+
+<script th:src="@{/frontend/js/bootstrap.min.js}"></script><!-- //bootstrap js -->
+</div>
+
+</body>
+</html>

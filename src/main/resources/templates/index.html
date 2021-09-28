@@ -1,0 +1,103 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1">
+  <body>
+  <!-- //top header -->
+<header th:replace="fragments :: header2"></header>
+<!-- main-slider -->
+<section th:replace="fragments :: main_slider"></section>
+<!-- /main-slider -->
+<!-- about page about section -->
+<section class="w3l-aboutblock1" id="about">
+    <div class="midd-w3 py-5">
+        <div class="container py-lg-5 py-md-3 py-2">
+            <h3 class="title-big text-center">HOW IT WORKS</h3><br>
+            <div class="row">
+                <div class="col-lg-6 mb-lg-0 mb-md-5 mb-5 align-self">
+                    <h4 class="title-small mx-0">Sellers </h4>
+                     1) Create an account and post products you want to sell<br>
+                    2) Negotiate with buyers in real-time and get the best price for your products<br>
+                    3) Sell products directly to customers
+                </div>
+                <div class="col-lg-6">
+                    <h5 class="title-small mx-0">Buyers </h5>
+                    1) Browse through offers posted in the marketplace and find what you’re looking for<br>
+                    2) Negotiate with multiple sellers in real-time and make the best deal<br>
+                    3) Buy directly from the sellers
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //about page about section -->
+<!--  services section -->
+<div class="w3l-servicesblock2" id="services">
+    <section id="grids5-block" class="py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h3 class="title-big text-center">NEW OFFERS</h3>
+            <div class="row mt-lg-5 mt-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="grids5-info">
+                        <a href="#service" class="d-block zoom"><img th:src="@{/frontend/images/s1.jpg}" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-desktop"></span>
+                            <h4><a href="#service">Work Expertise & Leadership</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-5">
+                    <div class="grids5-info">
+                        <a href="#service" class="d-block zoom"><img src="assets/images/s4.jpg" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-cogs"></span>
+                            <h4><a href="#service">Digital Product Development</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
+                    <div class="grids5-info">
+                        <a href="#service" class="d-block zoom"><img src="assets/images/s3.jpg" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-line-chart"></span>
+                            <h4><a href="#service">Business Software Development</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!--  //services section -->
+<section class="w3l-bottom1 py-5">
+    <div class="container py-md-5 py-sm-4 py-2">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="bottom-info">
+                    <div class="header-section">
+                        <h3 class="title-big mx-0">Start improving your Business today! Join Us</h3>
+                        <p class="mt-3 pr-lg-5">Steps to upload</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 align-self text-lg-right">
+                <a href="#learn" class="btn btn-style btn-outline-dark mt-lg-0 mt-md-5 mt-4 mr-2">Learn More </a>
+                <a href="contact.html" class="btn btn-style btn-primary mt-lg-0 mt-md-5 mt-4">Contact us</a>
+        </div>
+     </div>
+    </div>
+</section>
+
+<!-- footer -->
+<section th:replace="fragments :: footer"></section>
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+
+</body>
+
+</html>

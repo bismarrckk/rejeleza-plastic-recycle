@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments :: header"/>
+<body>
+<div id="wrapper">
+     <!-- Navigation -->
+     <nav th:replace="admin/fragments :: navigation"></nav>
+       <!-- Navigation -->
+       <div id="page-wrapper">
+        <div class="graphs">	 
+    <div class="content_bottom">
+     <div class="col-md-12 span_3">
+		  <div class="bs-example1" data-example-id="contextual-table">
+		  	<div class="row">
+		  		<div class="col-md-6">
+		  <h3> Categories</h3>
+		  </div>
+		  <div class="col-md-6">
+		  <a th:href="@{/categories/create}" class="btn btn-success" style="float:right;margin:1px"> New Category</a>
+		     </div>
+		     </div>
+		    <table class="table table-striped table-hover table-bordered">
+		      <thead>
+				<tr>
+					
+					<th><a th:href="@{'/categories/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a></th>
+					
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<tr th:each="category:${listCategories}">
+					<td th:text="${category.name}">
+					<td>
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<a th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+						<a th:href="@{/categories/delete/{id}(id=${category.id})}" class="btn btn-danger" id="delBtn"><i class="fa fa-minus-circle"></i></a>
+					</div>
+					</td>
+				
+				</tr>
+			</tbody>
+		
+		    </table>
+		    		<hr>
+					<div class="container" align="center"><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div>
+					<div class="container" align="center" th:if="${totalPages > 1}" >
+						<i> Total Entries: [[${totalItems}]] </i>
+						</div>
+					<div>&nbsp;</div>
+						<div class="container" align="center" th:if="${totalPages > 1}" >
+					
+					
+						<a th:if="${currentPage > 1}" th:href="@{'/categories/page/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
+						<span th:unless="${currentPage > 1}">First</span>
+						&nbsp;&nbsp;
+						
+						<a th:if="${currentPage > 1}" th:href="@{'/categories/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+						<span th:unless="${currentPage > 1}">Previous</span>
+						
+						&nbsp;&nbsp;
+						<th:block th:if="${totalPages <= 5}">
+						<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+							<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+							<span th:unless="${currentPage != i}">[[${i}]]</span>
+							&nbsp;
+						</span>
+						</th:block>
+						<th:block th:if="${totalPages>5}">
+							<th:block th:if="${currentPage <= 5 || currentPage > totalPages - 4 }">
+								<span th:each="i: ${#numbers.sequence(1, 5)}">
+									<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+									<span th:unless="${currentPage != i}">[[${i}]]</span>
+									&nbsp;
+								</span>
+								<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + 6 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">...</a>
+								
+								<span th:each="i: ${#numbers.sequence(totalPages - 4,totalPages)}">
+									<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+									<span th:unless="${currentPage != i}">[[${i}]]</span>
+									&nbsp;
+								</span>
+							</th:block>
+							<th:block th:if="${currentPage > 5 && currentPage < totalPages -4 }">
+								<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${currentPage - 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">...</a>
+								<span th:each="i: ${#numbers.sequence(currentPage - 4,currentPage + 4)}">
+									<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+									<span th:unless="${currentPage != i}">[[${i}]]</span>
+									&nbsp;
+							  </span>
+								<a th:if="${currentPage != i}" th:href="@{'/categories/page/' + ${currentPage + 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">...</a>
+							</th:block>
+						</th:block>
+						
+						
+						<a th:if="${currentPage < totalPages}" th:href="@{'/categories/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+						<span th:unless="${currentPage < totalPages}">Next</span>
+						&nbsp;&nbsp;
+						
+						<a th:if="${currentPage < totalPages}" th:href="@{'/categories/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+						<span th:unless="${currentPage < totalPages}">Last</span>
+					</div>
+				<!-- Modal -->	
+					<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLongTitle">Delete Category</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        <p>Are you sure you want to delete this category?</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					        <a href="" class="btn btn-danger" id="delRef">Delete</a>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+								
+			<!-- Modal -->
+		  </div>
+	   </div>
+	  <div class="clearfix"> </div>
+	 </div>
+	 <div th:replace="admin/fragments :: footer">     
+    </div>
+  </div>
+ </div>
+ <!-- /#page-wrapper -->
+ </div>
+ <!-- /#wrapper -->
+ <!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" th:src="@{/admin/js/bootstrap.min.js}"></script>
+</body>
+</html>

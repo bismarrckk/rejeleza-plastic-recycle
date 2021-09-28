@@ -1,0 +1,102 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1"/>
+  <body>
+
+    <!-- top header -->
+<header th:replace="fragments :: header2"></header>
+  <!-- //top header -->
+<section class="w3l-breadcrumb">
+    <div class="container">
+      <ul class="breadcrumbs-custom-path">
+       <li><a th:href="@{/}">Home</a></li>
+        <li class="active">/ Register</li>
+      </ul>
+    </div>
+  </section>
+<!-- contact -->
+    <section class="w3l-contacts-12" id="contact">
+        <div class="contact-top pt-5">
+            <div class="container py-lg-4">
+                <div class="title-heading-w3 text-center mx-auto">
+                    <h3 class="title-big">Sign Up</h3>
+                </div><br>
+               
+                    <!-- contact form -->
+                    <div class="container"  style="background-color: #f7f7f7;border-radius: 25px">
+        
+           
+           	<div th:if="${param.success}">
+		     <div class="alert alert-info">Registration successful,
+		      Please check your email to verify your account
+		      </div>
+		    </div>
+		     <div th:if="${param.error}">
+		     <div class="alert alert-danger">Duplicate!</div>
+		    </div>
+			
+			 <form th:action="@{/save}" method="Post" th:object="${user}">
+			 	<div class="row">
+			 	<div class="col-md-6" style="padding-bottom: 10px;">
+				 <div class="form-group">
+				 <label class="control-label" for="firstName">First Name</label>
+				 <input id="firstName" class="form-control" th:field="*{firstName}" required/>
+				 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+				 </div>
+				  <div class="form-group">
+				 <label class="control-label" for="lastName">Last Name</label>
+				 <input id="lastName" class="form-control" th:field="*{lastName}" required/>
+				 <span style="color:red;font-style:italic"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+				 </div>
+				  <div class="form-group">
+				 <label class="control-label" for="email">Email</label>
+				 <input id="email" type="email" class="form-control" th:field="*{email}" required/>
+				 <span style="color:red;font-style:italic"  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+				 </div>
+				 
+				 </div>
+				 <div class="col-md-6" style="padding-bottom: 10px;">
+				  <div class="form-group">
+				 <label class="control-label" for="phone">Phone</label>
+				 <input id="phone" type="number" class="form-control" th:field="*{phone}" required/>
+				 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+				 </div>
+				  <div class="form-group">
+				 <label class="control-label" for="idNumber">ID Number</label>
+				 <input id="idNumber" type="number" class="form-control" th:field="*{idNumber}" required/>
+				 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('idNumber')}" th:errors="*{idNumber}"></span>
+				 </div>
+				  <div class="form-group">
+				 <label class="control-label" for="password">Password</label>
+				 <input id="password" class="form-control" th:field="*{password}" type="password" required/>
+				 <span style="color:red;font-style:italic" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+				 </div>
+				 <div class="form-group">
+			      <button type="submit" class="btn btn-primary">Register</button>
+			      <span>Already registered? <a href="/" th:href="@{/login}">Login
+			        here</a></span>
+			     </div>
+			     </div>
+			     </div>
+			</form>
+           
+          
+        </div>
+    </div>
+                   
+                   
+               
+            </div>
+           
+        </div>
+    </section>
+    <!-- //contact -->
+<!-- footer -->
+<section th:replace="fragments :: footer"></section>
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+
+</body>
+</html>

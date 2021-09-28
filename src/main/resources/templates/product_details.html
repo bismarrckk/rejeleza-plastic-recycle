@@ -1,0 +1,93 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1"/>
+  <body>
+
+    <!-- top header -->
+<header th:replace="fragments :: header2_auth"></header>
+  <!-- //top header -->
+<!--  services section -->
+ <section class="w3l-contacts-12" id="contact">
+        <div class="contact-top">
+            <div class="container">
+               
+                    <!-- contact form -->
+          <div class="container"  style="background-color: #f8f9fa">
+           <div class="title-heading-w3 text-center mx-auto">
+                    <h3 class="title-big">[[${product.title}]]</h3>
+                </div><br>
+           	
+			
+			 
+	               <div class="form-row">
+		                     <div class="col-md-6">
+		                       <div class="form-group">
+		                           <label >Cover Photo</label><br>
+		                           <img style="width:100%;height:312px" th:src="@{${'/photos/'+ product.coverPhoto}}" />
+		                       </div>
+		                     </div>
+		                    
+		                     <div class="col-md-6">
+		                       <div class="form-group">
+		                           <label >Video</label><br>
+		                           <video width="100%" controls>
+									  <source th:src="@{${'/photos/'+product.video}}" type="video/mp4" >
+									 
+									</video>
+		                       </div>
+		                     </div>
+		                     
+		                    </div>
+		                    <hr>
+		          <div class="form-row">
+	                 <div class="col-md-7">
+	                 <h5>Details</h5><br>     
+	              
+	                   
+		                <b>Title</b> <span style="float:right">[[${product.title}]]</span>
+		                <hr>
+		                <b>Category</b> <span style="float:right">[[${product.category.name}]]</span>
+		                <hr>
+		                <b>Condition</b> <span style="float:right">[[${product.condition}]]</span>
+		                <hr>
+		                <b>Quantity</b> <span style="float:right">[[${product.quantity}]][[${product.unit}]]s</span>
+
+		                <hr>
+		                <b>Price</b> <span style="float:right">Ksh.[[${product.price}]]/[[${product.unit}]]</span>		               
+		               
+		                <hr>
+		                <b>Location</b> <span style="float:right">[[${product.streetAddress}]],[[${product.county}]]</span>
+		                 <hr>
+		                <b>Date posted</b> <span style="float:right">[[${product.postDate}]]</span>
+		                 <hr>
+	                       <p>[[${product.description}]]</p>
+	                      <hr>
+	                     
+		                
+		              </div>
+		               <div class="col-md-1">  
+		               </div>
+		              <div class="col-md-4">  
+	                 <h5>Seller</h5><br>
+	                 	<h5><i class="fa fa-user"></i> [[${product.user.firstName}]] [[${product.user.lastName}]]</h5><br>
+	                 	<h6><i class="fa fa-envelope"></i> [[${product.user.email}]]</h6><br>
+	                 	<h5><i class="fa fa-phone"></i> 0[[${product.user.phone}]]</h5>
+	                 </div>
+	                 </div>
+	                
+		                  
+		       
+          
+        </div>
+    </div>
+
+ </div>
+ </section>
+<!-- footer -->
+<section th:replace="fragments :: footer"></section>
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+</body>
+</html>
