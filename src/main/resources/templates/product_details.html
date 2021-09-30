@@ -16,29 +16,24 @@
            <div class="title-heading-w3 text-center mx-auto">
                     <h3 class="title-big">[[${product.title}]]</h3>
                 </div><br>
-           	
-			
-			 
-	               <div class="form-row">
-		                     <div class="col-md-6">
-		                       <div class="form-group">
-		                           <label >Cover Photo</label><br>
-		                           <img style="width:100%;height:312px" th:src="@{${'/photos/'+ product.coverPhoto}}" />
-		                       </div>
-		                     </div>
-		                    
-		                     <div class="col-md-6">
-		                       <div class="form-group">
-		                           <label >Video</label><br>
-		                           <video width="100%" controls>
-									  <source th:src="@{${'/photos/'+product.video}}" type="video/mp4" >
-									 
-									</video>
-		                       </div>
-		                     </div>
-		                     
-		                    </div>
-		                    <hr>
+           			 
+	             <div class="btn-group" role="group" aria-label="Basic example" style="margin-bottom:5px">
+					  <button class="btn btn-secondary active" onclick="openFile('image')">Images</button>
+					  <button class="btn btn-secondary" onclick="openFile('video')">Video</button>
+				 </div>
+				 <div id="image" class="file">
+				  <img style="width:50%" th:src="@{${'/photos/'+ product.coverPhoto}}" />
+				   
+				</div>
+				
+				<div id="video" class="file" style="display:none">
+				   <video width="50%" controls>
+					  <source th:src="@{${'/photos/'+product.video}}" type="video/mp4" >
+				   </video>
+				   
+				</div>
+ 
+		          <hr>
 		          <div class="form-row">
 	                 <div class="col-md-7">
 	                 <h5>Details</h5><br>     
@@ -59,9 +54,9 @@
 		                <b>Location</b> <span style="float:right">[[${product.streetAddress}]],[[${product.county}]]</span>
 		                 <hr>
 		                <b>Date posted</b> <span style="float:right">[[${product.postDate}]]</span>
-		                 <hr>
-	                       <p>[[${product.description}]]</p>
-	                      <hr>
+		                <hr>
+		                <p>[[${product.description}]]</p>
+		                <hr>
 	                     
 		                
 		              </div>
@@ -89,5 +84,17 @@
 
 <!--  java script files here -->
 <div th:replace="fragments :: js_files"></div>
+<!-- Tabs java script files here -->
+<script>
+function openFile(fileName) {
+  var i;
+  var x = document.getElementsByClassName("file");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(fileName).style.display = "block";  
+}
+</script>
+<!--  tabs -->
 </body>
 </html>

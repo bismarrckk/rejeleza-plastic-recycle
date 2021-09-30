@@ -21,11 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.production.v1.model.Category;
-import com.production.v1.model.Product;
+
 import com.production.v1.model.User;
 import com.production.v1.services.CategoryService;
-import com.production.v1.services.ProductService;
 import com.production.v1.services.UserService;
 import com.production.v1.util.BaseUrlUtility;
 import com.production.v1.web.dto.ProductsByCategory;
@@ -64,6 +62,7 @@ public class MainController {
 			model.addAttribute("productList", cat);
 			model.addAttribute("categories",categoryService.getAllCategoriesDropdown());
 			model.addAttribute("categoryName",categoryService.getById(id));
+			
 			return "product_list";
 			}catch(RuntimeException Ex) {
 				attributes.addFlashAttribute("message","Product in this Category not found!!");

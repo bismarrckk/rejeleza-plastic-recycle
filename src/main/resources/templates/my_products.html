@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments :: header1"/>
+  <body>
+
+    <!-- top header -->
+<header th:replace="fragments :: header2_auth"></header>
+  <!-- //top header -->
+<!--  services section -->
+ <section class="w3l-contacts-12" id="contact">
+        <div class="contact-top">
+            <div class="container">
+               
+                    <!-- contact form -->
+          <div class="overflow-auto"  style="background-color: #f8f9fa;height:511px">
+           <div class="title-heading-w3 text-center mx-auto">
+                    <h3 class="title-big">My Offers</h3>
+                </div><br>
+           
+		    <div th:if="${message}">
+		     <div class="alert alert-danger">[[${message}]]
+		      </div>
+		    </div>
+		     <div th:if="${param.error}">
+		     <div class="alert alert-danger">Duplicate!</div>
+		    </div>
+		    <table class="table table-striped table-hover table-bordered">
+		      <thead>
+				<tr>
+					<th>Title</th>
+					<th>County</th>
+					<th>Category</th>
+					<th>Date</th>
+					<th>Status</th>
+					<th>view</th>
+				</tr>
+			<tbody>
+			  <tr th:each="product:${productList}">
+					<td th:text="${product.title}">
+					<td th:text="${product.county}">
+					<td th:text="${product.category.name}">
+					<td  th:text="${product.postDate}">
+					<td  th:text="${product.status}">
+					<td><a th:href="@{/products/show/{id}(id=${product.id})}"><i class="fa fa-eye"></i></a></td>
+					
+					
+					
+				
+				</tr>
+			</tbody>
+			</table>
+        </div>
+    </div>
+
+ </div>
+ </section>
+<!-- footer -->
+<section th:replace="fragments :: footer"></section>
+<!-- //footer -->
+
+<!--  java script files here -->
+<div th:replace="fragments :: js_files"></div>
+</body>
+</html>

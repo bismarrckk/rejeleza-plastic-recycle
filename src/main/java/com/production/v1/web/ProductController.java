@@ -1,6 +1,7 @@
 package com.production.v1.web;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,6 +42,7 @@ import com.production.v1.services.ProductService;
 import com.production.v1.services.UserService;
 import com.production.v1.util.FileUploadUtil;
 import com.production.v1.web.dto.ProductDto;
+import com.production.v1.web.dto.SearchProduct;
 import com.production.v1.web.dto.UserRegistrationDto;
 
 @Controller
@@ -56,7 +59,12 @@ public class ProductController {
 	private Log logger=LogFactory.getLog(RuntimeException.class);
 	
 	@GetMapping
-	public String index(Model model) {
+	public String index(Model model,@Param("q") String q) {
+		if(q != null) {
+		List<SearchProduct> products=productService.searchProduct(q);
+		model.addAttribute("products", products);
+		return"auth_index";
+		}
 		List<Product> products=productService.getApprovedProducts("Approved");
 		model.addAttribute("products", products);
 		return"auth_index";
@@ -69,6 +77,7 @@ public class ProductController {
 	
 	@PostMapping("/save")
 	public String saveProduct(@RequestParam("coverPhoto") MultipartFile imageFile,@RequestParam("video") MultipartFile videoFile,HttpServletRequest request,RedirectAttributes attributes) throws IOException {
+		
 		if(!productService.validateImageFile(imageFile)) {
 			attributes.addFlashAttribute("message", "Invalid image file type,Allowed file types are jpeg,jpg,png");
 			return "redirect:/products/create";
@@ -77,6 +86,7 @@ public class ProductController {
 			attributes.addFlashAttribute("message", "Invalid video file type,Allowed file types are mp4,mkv");
 			return "redirect:/products/create";
 		}
+		
 		Principal principal = request.getUserPrincipal();
 		String email=principal.getName();
 		User user=userService.findByEmail(email);
@@ -167,16 +177,33 @@ public class ProductController {
 	
 	@GetMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable(value="id") int id,RedirectAttributes attributes) {
+		Path currentPath= Paths.get(".");
+	    Path absolutePath=currentPath.toAbsolutePath();
+	    String finalPath=absolutePath + "/src/main/resources/static/photos/";
+		
 		try {
-		productService.deleteProduct(id);
-		attributes.addFlashAttribute("message","Product deleted!!");
+			Product product=productService.getProductById(id);
+			String path1=product.getCoverPhoto();
+			String path2=product.getVideo();
 			
-		}catch(RuntimeException Ex) {
+			String finalPathh1=finalPath+path1;
+			String finalPathh2=finalPath+path2;
+			
+			Path deletePath1=Paths.get(finalPathh1);
+			Path deletePath2=Paths.get(finalPathh2);
+			
+			Files.delete(deletePath1);
+			Files.delete(deletePath2);
+			
+			productService.deleteProduct(id);
+			attributes.addFlashAttribute("message","Product deleted!!");
+			
+		}catch(RuntimeException | IOException Ex) {
 			logger.error("Request  threw an exception ", Ex);
 			attributes.addFlashAttribute("message", "Product no found!!");
 		}
 			
-		return"redirect:/products/list";
+		return"redirect:/products/approved";
 		
 	}
 	
@@ -269,6 +296,15 @@ public class ProductController {
 		}
 	}
 	
-	
+	@GetMapping("/myOffers")
+	public String showMyOffers(Model model,HttpServletRequest request) {
+		Principal principal=request.getUserPrincipal();
+		String email=principal.getName();
+		User user=userService.findByEmail(email);
+		List<Product> products=productService.getOffersByUser(user);
+		model.addAttribute("productList", products);
+		return"my_products";
+		
+	}
 	
 }

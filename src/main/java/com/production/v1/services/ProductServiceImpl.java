@@ -2,6 +2,7 @@ package com.production.v1.services;
 
 
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.production.v1.model.Product;
-
+import com.production.v1.model.User;
 import com.production.v1.repository.ProductRepository;
 import com.production.v1.web.dto.ProductDto;
+import com.production.v1.web.dto.SearchProduct;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -118,6 +120,19 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> getApprovedProducts(String status) {
 		return productRepo.findByStatus(status);
 	}
+
+	@Override
+	public List<Product> getOffersByUser(User user) {
+		// TODO Auto-generated method stub
+		return productRepo.findByUser(user);
+	}
+
+	@Override
+	public List<SearchProduct> searchProduct(String q) {
+		
+		return productRepo.search(q);
+	}
+
 
 	
 

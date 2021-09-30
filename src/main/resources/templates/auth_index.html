@@ -9,15 +9,16 @@
 
 <section class="w3l-breadcrumb">
     <div class="container">
+       <form th:action="@{/products}">
         <div class="input-group">
 		  <div class="top-inputs">
-		    <input type="search" id="form1" class="form-control" placeholder="search"/>
-		    
+		    <input type="text" name="q" th:value="${q}" class="form-control" placeholder="search"/>
 		  </div>
-		  <button type="button" class="btn btn-primary">
+		  <button type="submit" class="btn btn-primary">
 		    <i class="fa fa-search"></i>
 		  </button>
 		</div>
+		</form>
     </div>
 </section>
 <!--  services section -->
