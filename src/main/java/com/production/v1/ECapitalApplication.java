@@ -8,6 +8,7 @@ public class ECapitalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ECapitalApplication.class, args);
-	}
+	} 
 
-}
+} 
+ 

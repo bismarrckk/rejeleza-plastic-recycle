@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.production.v1.model.User;
 import com.production.v1.services.CategoryService;
+import com.production.v1.services.ProductService;
 import com.production.v1.services.UserService;
 import com.production.v1.util.BaseUrlUtility;
 import com.production.v1.web.dto.ProductsByCategory;
@@ -34,11 +35,13 @@ import net.bytebuddy.utility.RandomString;
 
 @Controller
 public class MainController {
-	private UserService userService;
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
-		
+	
 	//constructor based injection
+	private UserService userService;
 	public MainController(UserService userService) {
 		super();
 		this.userService = userService;
@@ -51,7 +54,13 @@ public class MainController {
 		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("MANAGER"))) {
 		return "auth_index";
 		}
+		String userHome="user.home";
+		String path=System.getProperty(userHome);
+		String uploadDir=path + "/uploads/";
+		
+		model.addAttribute("products", productService.getLatestProducts());
 		model.addAttribute("categories",categoryService.getAllCategoriesDropdown());
+		model.addAttribute("path",uploadDir);
 		return "index";
 	}
 	

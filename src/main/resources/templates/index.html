@@ -36,36 +36,21 @@
         <div class="container py-lg-5 py-md-4 py-2">
             <h3 class="title-big text-center">NEW OFFERS</h3>
             <div class="row mt-lg-5 mt-4">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" th:each="product : ${products}">
                     <div class="grids5-info">
-                        <a href="#service" class="d-block zoom"><img th:src="@{/frontend/images/s1.jpg}" alt=""
+                        <a th:href="@{/products/show/{id}(id=${product.id})}" class="d-block zoom"><img style="height:200px;width:100%" th:src="${path + product.coverPhoto}" alt=""
                                 class="img-fluid service-image" /></a>
                         <div class="blog-info">
-                            <span class="fa fa-desktop"></span>
-                            <h4><a href="#service">Work Expertise & Leadership</a></h4>
+                            <ul>
+                            <li><h5>[[${product.title}]]</h5></li>
+                            <li><h6>Ksh.[[${product.price}]]/[[${product.unit}]]</h6></li>
+                            <li><h6><i class="fa fa-map-marker" > [[${product.streetAddress}]],[[${product.county}]]</i></h6></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mt-md-0 mt-5">
-                    <div class="grids5-info">
-                        <a href="#service" class="d-block zoom"><img src="assets/images/s4.jpg" alt=""
-                                class="img-fluid service-image" /></a>
-                        <div class="blog-info">
-                            <span class="fa fa-cogs"></span>
-                            <h4><a href="#service">Digital Product Development</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
-                    <div class="grids5-info">
-                        <a href="#service" class="d-block zoom"><img src="assets/images/s3.jpg" alt=""
-                                class="img-fluid service-image" /></a>
-                        <div class="blog-info">
-                            <span class="fa fa-line-chart"></span>
-                            <h4><a href="#service">Business Software Development</a></h4>
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
         </div>
     </section>
@@ -77,15 +62,16 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="bottom-info">
-                    <div class="header-section">
+                   <div class="header-section">
                         <h3 class="title-big mx-0">Start improving your Business today! Join Us</h3>
-                        <p class="mt-3 pr-lg-5">Steps to upload</p>
-                    </div>
+                      
+                 </div>
                 </div>
             </div>
             <div class="col-lg-5 align-self text-lg-right">
-                <a href="#learn" class="btn btn-style btn-outline-dark mt-lg-0 mt-md-5 mt-4 mr-2">Learn More </a>
-                <a href="contact.html" class="btn btn-style btn-primary mt-lg-0 mt-md-5 mt-4">Contact us</a>
+            	
+                <a th:href="@{/contact}" class="btn btn-style btn-outline-dark mt-lg-0 mt-md-5 mt-4 mr-2">Learn More </a>
+                <a th:href="@{/login}" class="btn btn-style btn-primary mt-lg-0 mt-md-5 mt-4">Register</a>
         </div>
      </div>
     </div>

@@ -26,4 +26,5 @@ public interface ProductService {
 	List<Product> getApprovedProducts(String status);
 	List<Product> getOffersByUser(User user);
 	List<SearchProduct> searchProduct(String q);
+	Page<Product> getLatestProducts();
 }

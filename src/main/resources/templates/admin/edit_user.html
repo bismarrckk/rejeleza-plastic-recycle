@@ -52,18 +52,18 @@
 		 	</select>
 		 </div>
 
-        <label class="col-4 col-form-label">Roles: </label>
-        <div class="col-8">
-            <th:block th:each="role: ${roles}">
-            <input name="roles" type="checkbox" th:field="*{roles}"
-                th:text="${role.name}" th:value="${role.id}" class="m-2" />
-            </th:block>
-        </div><br>
-    
-		 <div class="form-group">
+	        <label class="col-4 col-form-label">Roles: </label>
+	        <div class="col-8">
+	            <th:block th:each="role: ${roles}">
+	            <input name="roles" type="checkbox" th:field="*{roles}"
+	                th:text="${role.name}" th:value="${role.id}" class="m-2" />
+	            </th:block>
+	        </div><br>
+	     </div>
+	     
+	     </div>
+	      <div class="form-group" align="center">
 	       <button type="submit" class="btn btn-success">UPDATE</button>
-	     </div>
-	     </div>
 	     </div>
 	 </form>
 	

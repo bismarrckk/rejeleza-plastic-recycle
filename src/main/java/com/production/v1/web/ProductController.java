@@ -16,7 +16,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.production.v1.exception.FileStorageException;
 import com.production.v1.model.Category;
 import com.production.v1.model.Product;
 import com.production.v1.model.User;
@@ -57,6 +58,8 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;	
 	private Log logger=LogFactory.getLog(RuntimeException.class);
+	@Value("${app.upload.dir:${user.home}}")
+	    public static String uploadDirr;
 	
 	@GetMapping
 	public String index(Model model,@Param("q") String q) {
@@ -131,10 +134,12 @@ public class ProductController {
                
 		productService.save(product);
 		
-		Path currentPath= Paths.get(".");
-	    Path absolutePath=currentPath.toAbsolutePath();
-	    String finalPath=absolutePath + "/src/main/resources/static/photos/";
-		String uploadDir=finalPath;
+		
+		
+		String userHome="user.home";
+		String path=System.getProperty(userHome);
+		String uploadDir=path + "/uploads/";
+		
 		
 		FileUploadUtil.saveFile(uploadDir, cleanImageFileName, imageFile);
        
@@ -209,9 +214,13 @@ public class ProductController {
 	
 	@GetMapping("/edit/{id}")
 	public String editProductStatus(@PathVariable(value="id") int id,RedirectAttributes attributes,Model model) {
+		String userHome="user.home";
+		String path=System.getProperty(userHome);
+		String uploadDir=path + "/uploads/";
 		try {
 			Product product=productService.getProductById(id);
 			model.addAttribute("product", product);
+			model.addAttribute("path", uploadDir);
 			return"admin/edit_product";
 		}catch(RuntimeException Ex) {
 			attributes.addFlashAttribute("message", "Product not found!!");
@@ -239,15 +248,21 @@ public class ProductController {
 	
 	@GetMapping("/show/{id}")
 	public String showDetails(@PathVariable(value="id") int id,Model model,RedirectAttributes attributes) {
+		String userHome="user.home";
+		String path=System.getProperty(userHome);
+		String uploadDir=path + "/uploads/";
 		try {
 			Product product=productService.getProductById(id);
 			model.addAttribute("product", product);
+			model.addAttribute("path", uploadDir);
+			System.out.println(uploadDir);
 			return "product_details";
 		}
 		catch(RuntimeException Ex) {
 			attributes.addFlashAttribute("message", "Product not found!!");
 			return "redirect:/products";
 		}
+		
 	}
 	
 	@GetMapping("/profile")

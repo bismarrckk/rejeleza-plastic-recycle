@@ -79,13 +79,13 @@ public class UserServiceImpl implements UserService{
 	        throws MessagingException, UnsupportedEncodingException {
 	    String toAddress = user.getEmail();
 	    String fromAddress = "b77kibet@gmail.com";
-	    String senderName = "IBIZZ SOLUTIONS";
-	    String subject = "Please verify your registration";
+	    String senderName = "REJELEZA";
+	    String subject = "Please verify your account";
 	    String content = "Dear [[name]],<br>"
-	            + "Please click the link below to verify your registration:<br>"
+	            + "Thankyou for registering with us,Please click the link below to verify your account:<br>"
 	            + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
 	            + "Thank you,<br>"
-	            + "IBIZZ SOLUTIONS.";
+	            + "REJELEZA.";
 	    
 	   
 	    MimeMessage message = javaMailSender.createMimeMessage();

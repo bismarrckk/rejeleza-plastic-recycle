@@ -133,6 +133,17 @@ public class ProductServiceImpl implements ProductService{
 		return productRepo.search(q);
 	}
 
+	@Override
+	public Page<Product> getLatestProducts() {
+		//Page<Product> products=productRepo.findAll(PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "id")));
+		Page<Product> products=productRepo.findByStatus("Approved",PageRequest.of(0, 6, Sort.by(Sort.Direction.DESC, "id")));
+		return products;
+	}
+	 
+	
+
+	
+
 
 	
 

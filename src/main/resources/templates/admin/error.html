@@ -21,6 +21,9 @@
                     Oops!</h1>
                 <h2>
                     404 Not Found</h2>
+                    <div th:if="${message}">
+					    [[${message}]]
+					</div>
               
                 <div class="error-actions">
                     <a th:href="@{/users}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>

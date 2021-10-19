@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Excellence - Business Category Bootstrap Responsive Website Template - Home : W3Layouts</title>
+    <title>Rejeleza - Plastic Recycling & Reuse Market place</title>
 
     <link href="//fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
       <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
               <h1><a class="navbar-brand" th:href="@{/}">
-                  <span class="fa fa-clone"></span> Excellence
+                  <span class="fa fa-clone"></span> Rejeleza
                   </a></h1>
               <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
                   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
           <nav class="navbar navbar-expand-lg navbar-light">
           
               <h1><a class="navbar-brand" th:href="@{/products}">
-                  <span class="fa fa-clone"></span> Excellence
+                  <span class="fa fa-clone"></span> Rejeleza
                   </a>
                </h1>
              
@@ -133,11 +133,9 @@
                         <div class="banner-info">
                             <div class="container">
                                 <div class="banner-info-bg">
-                                    <h6>We are Creative</h6>
-                                    <h5>World IT Service company </h5>
-                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
-                                        creates amazing UI/UX experiences. </p>
-                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Learn More</a>
+                                     <h5>Plastic Recycling & Reuse Market place </h5>
+                                    <p class="mt-md-4 mt-3">Connect and trade directly with suppliers and buyers of recyclable & reusable plastics </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" th:href="@{/contact}"> Learn More</a>
                                 </div>
                             </div>
                         </div>
@@ -148,14 +146,12 @@
     </div>
 </section>
 
-<section class="w3l-footer-29-main" th:fragment="footer" >
+<section class="w3l-footer-29-main" th:fragment="footer">
 
   <!-- copyright -->
   <section class="w3l-copyright text-center">
     <div class="container">
-      <p class="copy-footer-29">© 2021 Excellence. All rights reserved. Design by <a href="https://w3layouts.com/"
-          target="_blank">
-          W3Layouts</a></p>
+      <p class="copy-footer-29">© 2021 Rejeleza. All rights reserved</p>
     </div>
 
     <!-- move top -->
@@ -187,6 +183,49 @@
   <!-- //copyright -->
 </section>
 
+<!-- Footer for short content -->
+<section class="w3l-footer-29-main" th:fragment="footer-short-content" style="position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;">
+
+  <!-- copyright -->
+  <section class="w3l-copyright text-center">
+    <div class="container">
+      <p class="copy-footer-29">© 2021 Rejeleza. All rights reserved</p>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      &#10548;
+    </button>
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- /move top -->
+  </section>
+  <!-- //copyright -->
+</section>
+<!-- End of footer for short content -->
 <div th:fragment="js_files">
 <script th:src="@{/frontend/js/jquery-3.3.1.min.js}"></script>
 
