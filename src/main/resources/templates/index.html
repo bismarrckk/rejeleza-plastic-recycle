@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-6">
                     <h5 class="title-small mx-0">Buyers </h5>
-                    1) Browse through offers posted in the marketplace and find what you’re looking for<br>
+                    1) Browse through offers posted in the marketplace and find what youï¿½re looking for<br>
                     2) Negotiate with multiple sellers in real-time and make the best deal<br>
                     3) Buy directly from the sellers
                 </div>
@@ -38,7 +38,7 @@
             <div class="row mt-lg-5 mt-4">
                 <div class="col-lg-4 col-md-6" th:each="product : ${products}">
                     <div class="grids5-info">
-                        <a th:href="@{/products/show/{id}(id=${product.id})}" class="d-block zoom"><img style="height:200px;width:100%" th:src="${path + product.coverPhoto}" alt=""
+                        <a th:href="@{/products/show/{id}(id=${product.id})}" class="d-block zoom"><img style="height:200px;width:100%" th:src="${'/uploads/' + product.coverPhoto}" alt=""
                                 class="img-fluid service-image" /></a>
                         <div class="blog-info">
                             <ul>

@@ -54,13 +54,9 @@ public class MainController {
 		if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("MANAGER"))) {
 		return "auth_index";
 		}
-		String userHome="user.home";
-		String path=System.getProperty(userHome);
-		String uploadDir=path + "/uploads/";
 		
 		model.addAttribute("products", productService.getLatestProducts());
 		model.addAttribute("categories",categoryService.getAllCategoriesDropdown());
-		model.addAttribute("path",uploadDir);
 		return "index";
 	}
 	

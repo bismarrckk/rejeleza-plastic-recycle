@@ -85,7 +85,7 @@ public class ProductController {
 			attributes.addFlashAttribute("message", "Invalid image file type,Allowed file types are jpeg,jpg,png");
 			return "redirect:/products/create";
 		}
-		if(!productService.validateVideoFile(videoFile)) {
+		if(productService.validateVideoFile(videoFile)) {
 			attributes.addFlashAttribute("message", "Invalid video file type,Allowed file types are mp4,mkv");
 			return "redirect:/products/create";
 		}
@@ -214,13 +214,10 @@ public class ProductController {
 	
 	@GetMapping("/edit/{id}")
 	public String editProductStatus(@PathVariable(value="id") int id,RedirectAttributes attributes,Model model) {
-		String userHome="user.home";
-		String path=System.getProperty(userHome);
-		String uploadDir=path + "/uploads/";
+		
 		try {
 			Product product=productService.getProductById(id);
 			model.addAttribute("product", product);
-			model.addAttribute("path", uploadDir);
 			return"admin/edit_product";
 		}catch(RuntimeException Ex) {
 			attributes.addFlashAttribute("message", "Product not found!!");
@@ -248,14 +245,10 @@ public class ProductController {
 	
 	@GetMapping("/show/{id}")
 	public String showDetails(@PathVariable(value="id") int id,Model model,RedirectAttributes attributes) {
-		String userHome="user.home";
-		String path=System.getProperty(userHome);
-		String uploadDir=path + "/uploads/";
+		
 		try {
 			Product product=productService.getProductById(id);
-			model.addAttribute("product", product);
-			model.addAttribute("path", uploadDir);
-			System.out.println(uploadDir);
+			model.addAttribute("product", product);		
 			return "product_details";
 		}
 		catch(RuntimeException Ex) {

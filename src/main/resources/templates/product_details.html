@@ -22,13 +22,13 @@
 					  <button class="btn btn-secondary" onclick="openFile('video')">Video</button>
 				 </div>
 				 <div id="image" class="file">
-				  <img style="width:50%;height:312px" th:src="${path + product.coverPhoto}" />
+				  <img style="width:50%;height:312px" th:src="${'/uploads/' + product.coverPhoto}">
 				   
 				</div>
 				
 				<div id="video" class="file" style="display:none">
 				   <video width="50%" height="312px" controls>
-					  <source th:src="${path + product.video}" type="video/mp4" >
+					  <source th:src="${'/uploads/' + product.video}" type="video/mp4" >
 				   </video>
 				   
 				</div>
