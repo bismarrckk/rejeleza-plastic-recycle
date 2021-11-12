@@ -10,8 +10,7 @@
 
     <link href="//fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    
-
+   
     <!-- Template CSS -->
     <link rel="stylesheet" th:href="@{/frontend/css/style-starter.css}">
     
@@ -229,9 +228,6 @@
 <div th:fragment="js_files">
 <script th:src="@{/frontend/js/jquery-3.3.1.min.js}"></script>
 
-<script th:src="@{/frontendjs/theme-change.js}"></script> <!-- //light and dark mode switch js -->
-
-<script th:src="@{/frontendjs/jquery-1.9.1.min.js}"></script>
 <!-- faq -->
 <script>
   const items = document.querySelectorAll(".accordion button");
@@ -386,8 +382,9 @@
   });
 </script>
 <!--//MENU-JS-->
+<script th:src="@{/frontend/js/bootstrap.min.js}"></script>
 
-<script th:src="@{/frontend/js/bootstrap.min.js}"></script><!-- //bootstrap js -->
+<!-- //bootstrap js -->
 </div>
 
 </body>
